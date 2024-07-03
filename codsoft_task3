@@ -1,3 +1,4 @@
+//HTML code:
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,3 +35,98 @@
     <script src="script007.js"></script>
 </body>
 </html>
+
+
+/*CSS:*/
+/* mystyle1.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.calculator {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+    background-color: #333;
+    color: #fff;
+    font-size: 2em;
+    text-align: right;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+    padding: 20px;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+}
+
+.operator {
+    background-color: #f9a825;
+    color: #fff;
+}
+
+.operator:hover {
+    background-color: #f57f17;
+}
+
+.equal {
+    grid-column: span 4;
+    background-color: #ff5722;
+    color: #fff;
+}
+
+.equal:hover {
+    background-color: #e64a19;
+}
+
+//Javascript Code:
+// script007.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const value = button.getAttribute('data-value');
+            if (value === '=') {
+                try {
+                    display.textContent = eval(display.textContent);
+                } catch {
+                    display.textContent = 'Error';
+                }
+            } else {
+                if (value === 'C') {
+                    display.textContent = '';
+                } else {
+                    display.textContent += value;
+                }
+            }
+        });
+    });
+});
+
+
